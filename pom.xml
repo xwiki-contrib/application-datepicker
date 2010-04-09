@@ -33,12 +33,12 @@
   <artifactId>xwiki-application-datepicker</artifactId>
   <packaging>xar</packaging>
   <name>Contrib - Applications - Date Picker Skin Extension</name>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
   <description>Date Picker Skin Extension for XWiki</description>
   <scm>
-    <connection>scm:svn:http://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-datepicker/tags/xwiki-application-datepicker-1.0</connection>
-    <developerConnection>scm:svn:https://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-datepicker/tags/xwiki-application-datepicker-1.0</developerConnection>
-    <url>http://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-datepicker/tags/xwiki-application-datepicker-1.0</url>
+    <connection>scm:svn:http://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-datepicker/trunk/</connection>
+    <developerConnection>scm:svn:https://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-datepicker/trunk/</developerConnection>
+    <url>http://svn.xwiki.org/svnroot/xwiki/contrib/projects/xwiki-application-datepicker/trunk/</url>
   </scm>
   <distributionManagement>
     <repository>
