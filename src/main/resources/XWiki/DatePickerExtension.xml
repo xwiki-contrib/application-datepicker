@@ -660,7 +660,8 @@ DatePicker.prototype    = {
       id : this._id_datepicker,
       className : 'datepicker',
       style : 'display: none; z-index:'+this._zindex });
-    this._div.innerHTML = '&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th width="10px" id="'+this._id_datepicker_prev+'" style="cursor: pointer;"&gt;&amp;nbsp;&amp;lt;&amp;lt;&amp;nbsp;&lt;/th&gt;&lt;th id="'+this._id_datepicker_hdr+'" colspan="5"&gt;&lt;/th&gt;&lt;th width="10px" id="'+this._id_datepicker_next+'" style="cursor: pointer;"&gt;&amp;nbsp;&amp;gt;&amp;gt;&amp;nbsp;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id="'+this._id_datepicker+'-tbody"&gt;&lt;/tbody&gt;&lt;tfoot&gt;&lt;td colspan="7" id="'+this._id_datepicker_ftr+'"&gt;&lt;/td&gt;&lt;/tfoot&gt;&lt;/table&gt;';
+
+    this._div.innerHTML = '&lt;table&gt;&lt;thead&gt;&lt;tr class="datepicker-header"&gt;&lt;th id="'+this._id_datepicker_prev+'" class="datepicker-prev-month"&gt;&amp;nbsp;&amp;lt;&amp;lt;&amp;nbsp;&lt;/th&gt;&lt;th id="'+this._id_datepicker_hdr+'" colspan="5"&gt;&lt;/th&gt;&lt;th id="'+this._id_datepicker_next+'" class="datepicker-next-month"&gt;&amp;nbsp;&amp;gt;&amp;gt;&amp;nbsp;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id="'+this._id_datepicker+'-tbody"&gt;&lt;/tbody&gt;&lt;tfoot&gt;&lt;td colspan="7" id="'+this._id_datepicker_ftr+'"&gt;&lt;/td&gt;&lt;/tfoot&gt;&lt;/table&gt;';
 
     // when DOM is ready, inject the calendar and hook observers
     if( this._lbContent ) {
@@ -754,7 +755,7 @@ DatePicker.prototype    = {
   /* hack for buggy form elements layering in IE */
   _wrap_in_iframe       : function ( content ) {
     return      ( Prototype.Browser.IE ) ?
-    "&lt;div style='height:123px;width:185px;background-color:white;align:left'&gt;&lt;iframe width='100%' height='100%' marginwidth='0' marginheight='0' frameborder='0' src='about:blank' style='filter:alpha(Opacity=50);'&gt;&lt;/iframe&gt;&lt;div style='position:absolute;background-color:white;top:2px;left:2px;width:180px'&gt;" + content + "&lt;/div&gt;&lt;/div&gt;" : content;
+    "&lt;div class='datepicker-container'&gt;&lt;iframe frameborder='0' src='about:blank'&gt;&lt;/iframe&gt;&lt;div class='datepicker-container-inner'&gt;" + content + "&lt;/div&gt;&lt;/div&gt;" : content;
   },
   /**
    * visible    : return the visibility status of the datepicker.
@@ -888,6 +889,7 @@ DatePicker.prototype    = {
     } catch ( e ) {};
     /* generate day headers */
     var trDay   = new Element('tr');
+    trDay.className = 'datepicker-wdays';
     this._language_day.get(this._language).each( function ( item ) {
                                                    var td       = new Element('td');
                                                    td.innerHTML = item;
@@ -1205,13 +1207,20 @@ div.datepicker table thead tr th {
  text-align: center;
  text-transform: uppercase;
 }
+div.datepicker table thead tr th.datepicker-prev-month, 
+div.datepicker table thead tr th.datepicker-next-month {
+  width: 10px;
+  cursor: pointer;
+}
+div.datepicker table thead tr th.datepicker-prev-month:hover,
+div.datepicker table thead tr th.datepicker-next-month:hover {
+  text-decoration: underline;
+}
 div.datepicker table tbody tr {
  margin: 0;
  padding: 0;
 }
 div.datepicker table tbody tr td {
- margin: 0;
- padding: 0;
  text-align: center;
 }
 div.datepicker table tbody tr td:hover,
@@ -1220,14 +1229,19 @@ div.datepicker table tbody tr td.today:hover {
  color: $theme.textColor;
  cursor: pointer;
 }
+div.datepicker table tbody tr td.today {
+ background-color: $theme.highlightColor;
+ border: 1px solid $theme.borderColor;
+ color: $theme.textColor;
+}
 div.datepicker table tbody tr td.wday,
 div.datepicker table tbody tr td.wday:hover {
  background-color: $theme.backgroundSecondaryColor;
  cursor: text;
 }
-div.datepicker table tbody tr td.today {
- background-color: $theme.highlightColor;
- color: $theme.textColor;
+div.datepicker table tbody tr td.wday{
+ border: none;
+ width: 14%;
 }
 div.datepicker table tbody tr td.nclick_outbound,
 div.datepicker table tbody tr td.nclick_outbound:hover {
@@ -1241,6 +1255,37 @@ div.datepicker table tfoot td {
  font-size: 10px;
  padding: 0;
  text-align: center;
+}
+div.datepicker table thead tr th,
+div.datepicker table tbody tr td {
+ padding: 2px 0;
+}
+div.datepicker table thead tr.datepicker-header,
+div.datepicker table tbody,
+div.datepicker table tbody tr.datepicker-wdays,
+div.datepicker table tfoot td {
+ border: 1px solid $theme.borderColor;
+}
+
+/* IE6 */
+div.datepicker div.datepicker-container {
+ height: 123px;
+ width: 185px;
+ align: left;
+}
+div.datepicker div.datepicker-container iframe {
+ filter: alpha(Opacity=0);
+ height: 102%;
+ margin: 0;
+ padding-bottom: 4px;
+ width: 100%;
+}
+div.datepicker div.datepicker-container-inner {
+ border: 1px solid $theme.borderColor;
+ left: 2px;
+ position: absolute;
+ top: 2px;
+ width: 180px;
 }
 
 </code></property><property><name></name></property><property><parse>1</parse>
