@@ -987,6 +987,8 @@ DatePicker.prototype    = {
         tr.appendChild( td );
       }
       tbody.appendChild( tr );
+
+      document.fire('xwiki:datepicker:loaded', {'input' : $(this._relative)});
     }
     return      tbody;
   },
@@ -1207,7 +1209,7 @@ div.datepicker table thead tr th {
  text-align: center;
  text-transform: uppercase;
 }
-div.datepicker table thead tr th.datepicker-prev-month, 
+div.datepicker table thead tr th.datepicker-prev-month,
 div.datepicker table thead tr th.datepicker-next-month {
   width: 10px;
   cursor: pointer;
