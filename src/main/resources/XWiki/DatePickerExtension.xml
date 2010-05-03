@@ -921,6 +921,7 @@ DatePicker.prototype    = {
         ,m : currentMonth
         ,y : currentYear
         ,b : badDates[daysIndex]
+        ,c : badDates[daysIndex] ? 'outbound' : ''
       };
       daysIndex++;
     }
@@ -944,7 +945,7 @@ DatePicker.prototype    = {
           d : daysIndex
           ,m : currentMonth
           ,y : currentYear
-          ,c : ( switchNextMonth )
+          ,c : ( switchNextMonth || badDates[daysIndex])
                ? 'outbound' :
                (
                 ((daysIndex == this._todayDate.getDate()) &amp;&amp;
